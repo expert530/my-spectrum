@@ -1,0 +1,22 @@
+{
+  "name": "My Spectrum",
+  "short_name": "Spectrum",
+  "description": "A privacy-first tool to document your neurodiversity profile, sensory preferences, communication style, and support needs. All data stays on your device.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

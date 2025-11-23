@@ -1,0 +1,158 @@
+{
+    "Focus": [
+        {
+            "score": 0,
+            "description": "Unable to sustain attention; constantly distracted and needs continuous redirection."
+        },
+        {
+            "score": 1,
+            "description": "Can focus for 5-10 minutes with close support and frequent prompts."
+        },
+        {
+            "score": 2,
+            "description": "Maintains focus for 15-20 minutes with occasional reminders."
+        },
+        {
+            "score": 3,
+            "description": "Stays engaged for 30-45 minutes with minimal support; takes breaks as needed."
+        },
+        {
+            "score": 4,
+            "description": "Sustained attention for 45-60 minutes; self-regulates breaks independently."
+        },
+        {
+            "score": 5,
+            "description": "Excellent focus for extended periods; rarely distracted and fully self-directed."
+        }
+    ],
+    "Social Interaction": [
+        {
+            "score": 0,
+            "description": "Avoids social contact; shows strong withdrawal and minimal interest in peers."
+        },
+        {
+            "score": 1,
+            "description": "Engages in basic greetings but struggles to maintain conversations; needs support for group activities."
+        },
+        {
+            "score": 2,
+            "description": "Can hold two-way conversations with some support; participates in structured group play."
+        },
+        {
+            "score": 3,
+            "description": "Comfortable in small groups; initiates conversations and shares ideas with peers."
+        },
+        {
+            "score": 4,
+            "description": "Enjoys social interactions; initiates games and resolves minor conflicts well."
+        },
+        {
+            "score": 5,
+            "description": "Highly sociable; thrives in group settings and naturally mentors peers."
+        }
+    ],
+    "Sensory Sensitivity": [
+        {
+            "score": 0,
+            "description": "Severe sensory overload; cannot tolerate bright lights, loud sounds, or certain textures."
+        },
+        {
+            "score": 1,
+            "description": "Strong sensitivity to specific stimuli; needs regular sensory breaks and accommodations."
+        },
+        {
+            "score": 2,
+            "description": "Tolerates most environments with minor adjustments; occasional sensory breaks help."
+        },
+        {
+            "score": 3,
+            "description": "Comfortable in typical settings; manages everyday sensory input with minimal support."
+        },
+        {
+            "score": 4,
+            "description": "Rarely affected by sensory input; highly resilient in varied environments."
+        },
+        {
+            "score": 5,
+            "description": "No noticeable sensitivity; handles intense stimuli without distress."
+        }
+    ],
+    "Motor Skills": [
+        {
+            "score": 0,
+            "description": "Significant motor challenges; struggles with basic fine and gross motor tasks."
+        },
+        {
+            "score": 1,
+            "description": "Limited coordination; can perform simple tasks but needs help with complex movements."
+        },
+        {
+            "score": 2,
+            "description": "Completes routine tasks like buttoning with guidance; occasional clumsiness."
+        },
+        {
+            "score": 3,
+            "description": "Performs most tasks independently; smooth movements in familiar settings."
+        },
+        {
+            "score": 4,
+            "description": "Good coordination for daily activities; rarely stumbles or drops things."
+        },
+        {
+            "score": 5,
+            "description": "Excellent motor proficiency in both fine and gross motor skills."
+        }
+    ],
+    "Routine Preference": [
+        {
+            "score": 0,
+            "description": "Cannot tolerate any change; experiences extreme distress with new or altered routines."
+        },
+        {
+            "score": 1,
+            "description": "Very rigid; requires extensive preparation and reassurance for any routine changes."
+        },
+        {
+            "score": 2,
+            "description": "Prefers predictable structure; accepts changes after clear explanation and support."
+        },
+        {
+            "score": 3,
+            "description": "Adapts to routine changes with some guidance; manages transitions independently."
+        },
+        {
+            "score": 4,
+            "description": "Comfortable when plans change; adjusts to new situations with minimal anxiety."
+        },
+        {
+            "score": 5,
+            "description": "Highly flexible; embraces variety and seamlessly adapts to major changes."
+        }
+    ],
+    "Emotional Regulation": [
+        {
+            "score": 0,
+            "description": "Frequent intense outbursts; unable to calm down without significant external support."
+        },
+        {
+            "score": 1,
+            "description": "Strong emotions occur regularly; needs calming strategies and co-regulation support."
+        },
+        {
+            "score": 2,
+            "description": "Manages feelings with brief support; uses simple techniques like deep breathing."
+        },
+        {
+            "score": 3,
+            "description": "Maintains composure most of the time; self-regulates in routine situations."
+        },
+        {
+            "score": 4,
+            "description": "Handles stress and frustration independently; calm under moderate pressure."
+        },
+        {
+            "score": 5,
+            "description": "Exceptional emotional control; resilient and self-sufficient in challenging scenarios."
+        }
+    ]
+}
