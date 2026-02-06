@@ -84,9 +84,9 @@ export default function PrivacyPolicy({ onBack }: PrivacyPolicyProps): JSX.Eleme
       <section className="legal-section">
         <h2>Third-Party Services</h2>
         <p>
-          The contact form uses FormSubmit.co to deliver messages. If you choose to use the 
+          The contact form uses Web3Forms to deliver messages. If you choose to use the 
           contact form, your message and any information you provide will be processed by 
-          FormSubmit according to their privacy policy. This is entirely optional.
+          Web3Forms according to their privacy policy. This is entirely optional.
         </p>
       </section>
 

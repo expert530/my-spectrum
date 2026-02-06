@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom'
+import { vi } from 'vitest'
 
 // Mock IntersectionObserver for tests
 class MockIntersectionObserver {
@@ -28,3 +29,6 @@ class MockIntersectionObserver {
 }
 
 global.IntersectionObserver = MockIntersectionObserver as unknown as typeof IntersectionObserver
+
+// Mock window.scrollTo to suppress jsdom "Not implemented" warnings
+window.scrollTo = vi.fn() as unknown as typeof window.scrollTo

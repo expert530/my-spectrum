@@ -624,14 +624,14 @@ export default function App(): JSX.Element {
             </p>
             <form 
               className="contact-form"
-              action="https://formsubmit.co/ko-fi.repackage789@passmail.com"
+              action="https://api.web3forms.com/submit"
               method="POST"
             >
-              <input type="hidden" name="_subject" value="My Spectrum - Contact Form" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="access_key" value="06242b3b-30ed-4a0a-90dc-88e138e594b4" />
+              <input type="hidden" name="subject" value="My Spectrum - Contact Form" />
+              <input type="hidden" name="from_name" value="My Spectrum Contact" />
               {/* Honeypot field for spam protection */}
-              <input type="text" name="_honey" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+              <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
               <div className="form-group">
                 <label htmlFor="contact-name">Your Name</label>
                 <input 
@@ -678,7 +678,7 @@ export default function App(): JSX.Element {
           Nothing is sent to any server.
         </p>
         <div className="footer-meta">
-          <span className="footer-version">v0.1.0</span>
+          <span className="footer-version">v1.0.1</span>
           <span className="footer-divider">•</span>
           <span className="footer-updated">Last updated: February 2026</span>
           <span className="footer-divider">•</span>
