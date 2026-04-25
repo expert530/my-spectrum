@@ -13,7 +13,7 @@
  * - Reset to default functionality
  */
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, type ReactElement } from 'react';
 import type { MetricScore } from '@/types';
 import { getIntensityLabel, MAX_METRIC_SCORE, DEFAULT_METRIC_SCORE } from '@/lib/metrics';
 
@@ -50,7 +50,7 @@ interface MetricSliderProps {
  * SVG icon components for each metric category
  * Clean, professional icons that work at any size
  */
-const MetricIcons: Record<string, JSX.Element> = {
+const MetricIcons: Record<string, ReactElement> = {
   Focus: (
     <svg
       viewBox="0 0 24 24"
@@ -150,7 +150,7 @@ const MetricIcons: Record<string, JSX.Element> = {
  * @param category - The metric name
  * @returns JSX element for the icon
  */
-function getMetricIcon(category: string): JSX.Element {
+function getMetricIcon(category: string): ReactElement {
   return (
     MetricIcons[category] ?? (
       <svg
@@ -181,7 +181,7 @@ export default function MetricSlider({
   values,
   value,
   onChange,
-}: MetricSliderProps): JSX.Element {
+}: MetricSliderProps): ReactElement {
   /** Track if slider is being interacted with */
   const [isActive, setIsActive] = useState(false);
 

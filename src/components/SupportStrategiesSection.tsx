@@ -11,7 +11,7 @@
  * - Collapsible sub-sections for Parents & Educators
  */
 
-import { useState } from 'react';
+import { useState, type ReactElement } from 'react';
 import type { Recommendations, MetricsObject, Strategy } from '@/types';
 import { getScoreColor, getSupportLevelLabel, MAX_METRIC_SCORE } from '@/lib/metrics';
 
@@ -67,7 +67,7 @@ function getSourceFullName(source: Strategy['source']): string {
 export default function SupportStrategiesSection({
   recommendations,
   metrics,
-}: SupportStrategiesSectionProps): JSX.Element | null {
+}: SupportStrategiesSectionProps): ReactElement | null {
   const [showSourceInfo, setShowSourceInfo] = useState(false);
   const [visibleTooltip, setVisibleTooltip] = useState<number | null>(null);
   const [parentStrategiesExpanded, setParentStrategiesExpanded] = useState(false);

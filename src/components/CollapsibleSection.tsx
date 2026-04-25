@@ -9,7 +9,7 @@
  * - Accessible with aria-expanded
  */
 
-import { useState, useRef, useEffect, type ReactNode } from 'react';
+import { useState, useRef, useEffect, type ReactElement, type ReactNode } from 'react';
 
 interface CollapsibleSectionProps {
   /** Section ID for navigation anchoring */
@@ -42,7 +42,7 @@ export default function CollapsibleSection({
   defaultExpanded = false,
   children,
   className = '',
-}: CollapsibleSectionProps): JSX.Element {
+}: CollapsibleSectionProps): ReactElement {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const [contentHeight, setContentHeight] = useState<number | undefined>(
     defaultExpanded ? undefined : 0

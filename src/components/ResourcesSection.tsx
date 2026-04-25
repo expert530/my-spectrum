@@ -9,7 +9,7 @@
  * - Tab-style layout with content below headers
  */
 
-import { useState } from 'react';
+import { useState, type ReactElement } from 'react';
 import { parentResources, teacherResources } from '@/data/resources';
 
 type ResourceTab = 'parent' | 'teacher' | null;
@@ -20,7 +20,7 @@ type ResourceTab = 'parent' | 'teacher' | null;
  * Static section with curated links to evidence-based resources
  * with tab-style navigation for Parents and Educators
  */
-export default function ResourcesSection(): JSX.Element {
+export default function ResourcesSection(): ReactElement {
   const [activeTab, setActiveTab] = useState<ResourceTab>(null);
 
   const handleTabClick = (tab: ResourceTab) => {

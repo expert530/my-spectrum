@@ -3,13 +3,13 @@
  * @description Privacy Policy page component
  */
 
-import { useEffect } from 'react';
+import { useEffect, type ReactElement } from 'react';
 
 interface PrivacyPolicyProps {
   onBack: () => void;
 }
 
-export default function PrivacyPolicy({ onBack }: PrivacyPolicyProps): JSX.Element {
+export default function PrivacyPolicy({ onBack }: PrivacyPolicyProps): ReactElement {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);

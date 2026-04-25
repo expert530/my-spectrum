@@ -3,13 +3,13 @@
  * @description Terms of Service page component
  */
 
-import { useEffect } from 'react';
+import { useEffect, type ReactElement } from 'react';
 
 interface TermsOfServiceProps {
   onBack: () => void;
 }
 
-export default function TermsOfService({ onBack }: TermsOfServiceProps): JSX.Element {
+export default function TermsOfService({ onBack }: TermsOfServiceProps): ReactElement {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);

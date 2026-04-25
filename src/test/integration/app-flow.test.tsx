@@ -168,7 +168,7 @@ describe('Application Integration Tests', () => {
 
       await waitFor(() => {
         const sliders = screen.getAllByRole('slider');
-        const focusSlider = sliders[0];
+        const focusSlider = sliders[0]!;
 
         fireEvent.change(focusSlider, { target: { value: '4' } });
         expect(focusSlider).toHaveValue('4');
@@ -181,7 +181,7 @@ describe('Application Integration Tests', () => {
       await waitFor(() => {
         // Initial state shows default (2) description
         const sliders = screen.getAllByRole('slider');
-        const focusSlider = sliders[0];
+        const focusSlider = sliders[0]!;
 
         // Change to a different value
         fireEvent.change(focusSlider, { target: { value: '5' } });
@@ -205,7 +205,7 @@ describe('Application Integration Tests', () => {
       // Find the first "High" preset button
       const highButtons = screen.getAllByRole('button', { name: /Set to high/i });
 
-      await user.click(highButtons[0]);
+      await user.click(highButtons[0]!);
 
       await waitFor(() => {
         const sliders = screen.getAllByRole('slider');
@@ -223,7 +223,7 @@ describe('Application Integration Tests', () => {
 
       // Change a slider first
       const sliders = screen.getAllByRole('slider');
-      fireEvent.change(sliders[0], { target: { value: '5' } });
+      fireEvent.change(sliders[0]!, { target: { value: '5' } });
 
       // Click Reset All
       const resetButton = screen.getByRole('button', { name: /Reset all/i });

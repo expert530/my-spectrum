@@ -9,7 +9,7 @@
  * - Displays shareable link for copying
  */
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, type ReactElement } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import type { MetricsObject, MetricName } from '@/types';
 
@@ -76,7 +76,7 @@ export default function ShareModal({
   metrics,
   isOpen,
   onClose,
-}: ShareModalProps): JSX.Element | null {
+}: ShareModalProps): ReactElement | null {
   const [name, setName] = useState('');
   const [copied, setCopied] = useState(false);
 

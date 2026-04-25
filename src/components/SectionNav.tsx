@@ -9,7 +9,7 @@
  * - Active section highlighting
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactElement } from 'react';
 
 interface Section {
   id: string;
@@ -42,7 +42,7 @@ interface SectionNavProps {
  *
  * Provides quick navigation between main sections
  */
-export default function SectionNav({ minimal = false }: SectionNavProps): JSX.Element {
+export default function SectionNav({ minimal = false }: SectionNavProps): ReactElement {
   const sections = minimal ? minimalSections : allSections;
   const [activeSection, setActiveSection] = useState(minimal ? 'sharing' : 'metrics');
 

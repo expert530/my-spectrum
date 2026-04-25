@@ -14,7 +14,7 @@
  * - Print-friendly design
  */
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactElement } from 'react';
 import settingsData from '../data/allSettingValues.json';
 import ProfileCard from './ProfileCard';
 import { generateRecommendations } from '../lib/recommendations';
@@ -120,7 +120,7 @@ export default function ViewingMode({
   metrics,
   profileName,
   onCreateOwn,
-}: ViewingModeProps): JSX.Element {
+}: ViewingModeProps): ReactElement {
   // State for source info panel visibility
   const [showSourceInfo, setShowSourceInfo] = useState(false);
   // State for tooltip visibility on mobile

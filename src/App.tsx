@@ -16,7 +16,7 @@
  * - Settings can be shared via QR code/URL
  */
 
-import { useEffect, useState, useRef, useMemo } from 'react';
+import { useEffect, useState, useRef, useMemo, type ReactElement } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import settingsData from './data/allSettingValues.json';
 import MetricSlider from './components/MetricSlider';
@@ -83,7 +83,7 @@ function getInitialMetrics(): MetricsObject {
  *
  * @returns Rendered application UI
  */
-export default function App(): JSX.Element {
+export default function App(): ReactElement {
   /** App initialization state */
   const [isReady, setIsReady] = useState(false);
 

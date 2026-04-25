@@ -12,6 +12,7 @@
  * - Accessible with proper ARIA attributes
  */
 
+import type { ReactElement } from 'react';
 import type { MetricScore } from '@/types';
 import { getMetricEmoji, getSupportInfo, MAX_METRIC_SCORE } from '@/lib/metrics';
 
@@ -57,7 +58,7 @@ function getProfileCardColorClass(name: string): string {
  *
  * Non-interactive card displaying a single metric's current state
  */
-export default function ProfileCard({ name, score, description }: ProfileCardProps): JSX.Element {
+export default function ProfileCard({ name, score, description }: ProfileCardProps): ReactElement {
   const supportInfo = getSupportInfo(score);
   const colorClass = getProfileCardColorClass(name);
   const emoji = getMetricEmoji(name);
