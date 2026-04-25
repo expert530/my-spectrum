@@ -1,7 +1,7 @@
 /**
  * @file components/SectionNav.tsx
  * @description Navigation component for jumping between page sections
- * 
+ *
  * Features:
  * - Fixed position on desktop (sidebar)
  * - Sticky bottom bar on mobile
@@ -9,12 +9,12 @@
  * - Active section highlighting
  */
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 interface Section {
-  id: string
-  label: string
-  icon: string
+  id: string;
+  label: string;
+  icon: string;
 }
 
 const allSections: Section[] = [
@@ -22,37 +22,37 @@ const allSections: Section[] = [
   { id: 'sharing', label: 'Share', icon: '📤' },
   { id: 'strategies', label: 'What Helps', icon: '💡' },
   { id: 'resources', label: 'Learn More', icon: '📖' },
-  { id: 'about', label: 'About', icon: '💜' }
-]
+  { id: 'about', label: 'About', icon: '💜' },
+];
 
 const minimalSections: Section[] = [
   { id: 'sharing', label: 'Share', icon: '📤' },
   { id: 'strategies', label: 'What Helps', icon: '💡' },
   { id: 'resources', label: 'Learn More', icon: '📖' },
-  { id: 'about', label: 'About', icon: '💜' }
-]
+  { id: 'about', label: 'About', icon: '💜' },
+];
 
 interface SectionNavProps {
   /** When true, shows only share-related sections (no metrics) */
-  minimal?: boolean
+  minimal?: boolean;
 }
 
 /**
  * SectionNav Component
- * 
+ *
  * Provides quick navigation between main sections
  */
 export default function SectionNav({ minimal = false }: SectionNavProps): JSX.Element {
-  const sections = minimal ? minimalSections : allSections
-  const [activeSection, setActiveSection] = useState(minimal ? 'sharing' : 'metrics')
+  const sections = minimal ? minimalSections : allSections;
+  const [activeSection, setActiveSection] = useState(minimal ? 'sharing' : 'metrics');
 
   /**
    * Handle smooth scroll to section
    */
   function scrollToSection(sectionId: string): void {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 
@@ -61,23 +61,23 @@ export default function SectionNav({ minimal = false }: SectionNavProps): JSX.El
    */
   useEffect(() => {
     function handleScroll(): void {
-      const scrollPosition = window.scrollY + 150
+      const scrollPosition = window.scrollY + 150;
 
       for (const section of sections) {
-        const element = document.getElementById(section.id)
+        const element = document.getElementById(section.id);
         if (element) {
-          const { offsetTop, offsetHeight } = element
+          const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section.id)
-            break
+            setActiveSection(section.id);
+            break;
           }
         }
       }
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <nav className="section-nav" aria-label="Page sections">
@@ -93,5 +93,5 @@ export default function SectionNav({ minimal = false }: SectionNavProps): JSX.El
         </button>
       ))}
     </nav>
-  )
+  );
 }

@@ -11,29 +11,39 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
 
-    /* Strict Type Checking */
+    /* Strict Type Checking - ALL ENABLED */
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
 
     /* Emit */
     "jsx": "react-jsx",
+    "noEmit": true,
 
     /* Interop Constraints */
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
 
     /* Path Mapping - support @/ imports */
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": ["./src/*"]
+    },
+
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": ["src", "e2e"],
+  "exclude": ["node_modules", "dist", "build", "coverage", "playwright-report", "test-results"]
 }

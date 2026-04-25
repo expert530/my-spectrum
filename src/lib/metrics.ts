@@ -1,24 +1,24 @@
 /**
  * @file lib/metrics.ts
  * @description Shared metric utilities - icons, emojis, colors, and support level calculations
- * 
+ *
  * Centralizes metric-related helper functions to avoid duplication across components.
  */
 
-import type { MetricName, MetricScore, SupportLevel } from '@/types'
+import type { MetricName, MetricScore, SupportLevel } from '@/types';
 
 /**
  * Map of metric names to emoji representations
  * Used for visual indicators in cards and headers
  */
 export const METRIC_EMOJI_MAP: Record<MetricName, string> = {
-  'Focus': '🎯',
+  Focus: '🎯',
   'Social Interaction': '👥',
   'Sensory Sensitivity': '👂',
   'Motor Skills': '🤸',
   'Routine Preference': '📅',
-  'Emotional Regulation': '😌'
-}
+  'Emotional Regulation': '😌',
+};
 
 /**
  * Get emoji for a metric category
@@ -26,20 +26,20 @@ export const METRIC_EMOJI_MAP: Record<MetricName, string> = {
  * @returns Emoji string, or sparkle for unknown metrics
  */
 export function getMetricEmoji(category: string): string {
-  return METRIC_EMOJI_MAP[category as MetricName] ?? '✨'
+  return METRIC_EMOJI_MAP[category as MetricName] ?? '✨';
 }
 
 /**
  * CSS class names for metric-specific colors
  */
 export const METRIC_COLOR_CLASS_MAP: Record<MetricName, string> = {
-  'Focus': 'metric--focus',
+  Focus: 'metric--focus',
   'Social Interaction': 'metric--social',
   'Sensory Sensitivity': 'metric--sensory',
   'Motor Skills': 'metric--motor',
   'Routine Preference': 'metric--routine',
-  'Emotional Regulation': 'metric--emotional'
-}
+  'Emotional Regulation': 'metric--emotional',
+};
 
 /**
  * Get the CSS class for metric-specific styling
@@ -47,7 +47,7 @@ export const METRIC_COLOR_CLASS_MAP: Record<MetricName, string> = {
  * @returns CSS class name or empty string
  */
 export function getMetricColorClass(name: string): string {
-  return METRIC_COLOR_CLASS_MAP[name as MetricName] ?? ''
+  return METRIC_COLOR_CLASS_MAP[name as MetricName] ?? '';
 }
 
 /**
@@ -57,10 +57,10 @@ export function getMetricColorClass(name: string): string {
  * 4-5: Independent (manages well independently)
  */
 export interface SupportInfo {
-  level: SupportLevel
-  label: string
-  color: string
-  bgColor: string
+  level: SupportLevel;
+  label: string;
+  color: string;
+  bgColor: string;
 }
 
 /**
@@ -74,23 +74,23 @@ export function getSupportInfo(score: number): SupportInfo {
       level: 'highNeed',
       label: 'High Support',
       color: '#dc2626',
-      bgColor: '#fef2f2'
-    }
+      bgColor: '#fef2f2',
+    };
   }
   if (score <= 3) {
     return {
       level: 'moderate',
       label: 'Moderate',
       color: '#d97706',
-      bgColor: '#fffbeb'
-    }
+      bgColor: '#fffbeb',
+    };
   }
   return {
     level: 'independent',
     label: 'Independent',
     color: '#059669',
-    bgColor: '#ecfdf5'
-  }
+    bgColor: '#ecfdf5',
+  };
 }
 
 /**
@@ -99,7 +99,7 @@ export function getSupportInfo(score: number): SupportInfo {
  * @returns Human-readable support level label
  */
 export function getSupportLevelLabel(score: number): string {
-  return getSupportInfo(score).label
+  return getSupportInfo(score).label;
 }
 
 /**
@@ -108,9 +108,9 @@ export function getSupportLevelLabel(score: number): string {
  * @returns SupportLevel enum value
  */
 export function getSupportLevel(score: number): SupportLevel {
-  if (score <= 1) return 'highNeed'
-  if (score <= 3) return 'moderate'
-  return 'independent'
+  if (score <= 1) return 'highNeed';
+  if (score <= 3) return 'moderate';
+  return 'independent';
 }
 
 /**
@@ -119,9 +119,9 @@ export function getSupportLevel(score: number): SupportLevel {
  * @returns Intensity label (Low, Medium, High)
  */
 export function getIntensityLabel(score: number): string {
-  if (score <= 1) return 'Low'
-  if (score <= 3) return 'Medium'
-  return 'High'
+  if (score <= 1) return 'Low';
+  if (score <= 3) return 'Medium';
+  return 'High';
 }
 
 /**
@@ -130,9 +130,9 @@ export function getIntensityLabel(score: number): string {
  * @returns Hex color code
  */
 export function getScoreColor(score: number): string {
-  if (score <= 1) return '#ef4444' // red - high need
-  if (score <= 3) return '#f59e0b' // amber - moderate
-  return '#10b981' // green - independent
+  if (score <= 1) return '#ef4444'; // red - high need
+  if (score <= 3) return '#f59e0b'; // amber - moderate
+  return '#10b981'; // green - independent
 }
 
 /**
@@ -141,7 +141,7 @@ export function getScoreColor(score: number): string {
  * @returns True if value is a valid MetricScore (0-5)
  */
 export function isValidMetricScore(value: number): value is MetricScore {
-  return Number.isInteger(value) && value >= 0 && value <= 5
+  return Number.isInteger(value) && value >= 0 && value <= 5;
 }
 
 /**
@@ -156,9 +156,9 @@ export function isValidMetricName(value: string): value is MetricName {
     'Sensory Sensitivity',
     'Motor Skills',
     'Routine Preference',
-    'Emotional Regulation'
-  ]
-  return validNames.includes(value as MetricName)
+    'Emotional Regulation',
+  ];
+  return validNames.includes(value as MetricName);
 }
 
 /**
@@ -170,15 +170,15 @@ export const METRIC_NAMES: MetricName[] = [
   'Sensory Sensitivity',
   'Motor Skills',
   'Routine Preference',
-  'Emotional Regulation'
-]
+  'Emotional Regulation',
+];
 
 /**
  * Maximum score value for metrics
  */
-export const MAX_METRIC_SCORE = 5
+export const MAX_METRIC_SCORE = 5;
 
 /**
  * Default/initial metric score
  */
-export const DEFAULT_METRIC_SCORE: MetricScore = 2
+export const DEFAULT_METRIC_SCORE: MetricScore = 2;

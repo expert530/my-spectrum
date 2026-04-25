@@ -3,50 +3,50 @@
  * @description Terms of Service page component
  */
 
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
 interface TermsOfServiceProps {
-  onBack: () => void
+  onBack: () => void;
 }
 
 export default function TermsOfService({ onBack }: TermsOfServiceProps): JSX.Element {
   // Scroll to top when component mounts
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="legal-page">
       <button onClick={onBack} className="legal-back-btn">
         ← Back to app
       </button>
-      
+
       <h1>Terms of Service</h1>
       <p className="legal-updated">Last updated: February 2026</p>
-      
+
       <section className="legal-section">
         <h2>Agreement to Terms</h2>
         <p>
-          By accessing or using My Spectrum, you agree to be bound by these Terms of 
-          Service. If you disagree with any part of these terms, you may not use the application.
+          By accessing or using My Spectrum, you agree to be bound by these Terms of Service. If you
+          disagree with any part of these terms, you may not use the application.
         </p>
       </section>
 
       <section className="legal-section">
         <h2>Description of Service</h2>
         <p>
-          My Spectrum is a free, open-source web application that helps users document 
-          and share their neurodiversity profile. The service is provided "as is" without any 
-          warranties or guarantees.
+          My Spectrum is a free, open-source web application that helps users document and share
+          their neurodiversity profile. The service is provided "as is" without any warranties or
+          guarantees.
         </p>
       </section>
 
       <section className="legal-section">
         <h2>Not Medical Advice</h2>
         <p>
-          <strong>Important:</strong> My Spectrum is an informational and communication 
-          tool only. It is not intended to provide medical, psychological, or therapeutic advice, 
-          diagnosis, or treatment.
+          <strong>Important:</strong> My Spectrum is an informational and communication tool only.
+          It is not intended to provide medical, psychological, or therapeutic advice, diagnosis, or
+          treatment.
         </p>
         <ul>
           <li>The content and recommendations are for informational purposes only</li>
@@ -70,21 +70,19 @@ export default function TermsOfService({ onBack }: TermsOfServiceProps): JSX.Ele
       <section className="legal-section">
         <h2>Intellectual Property</h2>
         <p>
-          My Spectrum is open-source software. The source code is available under the 
-          terms of its license. You are free to use, modify, and distribute the code in 
-          accordance with that license.
+          My Spectrum is open-source software. The source code is available under the terms of its
+          license. You are free to use, modify, and distribute the code in accordance with that
+          license.
         </p>
-        <p>
-          Any content you create (your profile settings, exported data) belongs to you.
-        </p>
+        <p>Any content you create (your profile settings, exported data) belongs to you.</p>
       </section>
 
       <section className="legal-section">
         <h2>Limitation of Liability</h2>
         <p>
-          To the maximum extent permitted by law, the creators and contributors of My Spectrum 
-          Settings shall not be liable for any indirect, incidental, special, consequential, or 
-          punitive damages, or any loss of profits or revenues, whether incurred directly or 
+          To the maximum extent permitted by law, the creators and contributors of My Spectrum
+          Settings shall not be liable for any indirect, incidental, special, consequential, or
+          punitive damages, or any loss of profits or revenues, whether incurred directly or
           indirectly, or any loss of data, use, goodwill, or other intangible losses resulting from:
         </p>
         <ul>
@@ -98,7 +96,7 @@ export default function TermsOfService({ onBack }: TermsOfServiceProps): JSX.Ele
       <section className="legal-section">
         <h2>Disclaimer of Warranties</h2>
         <p>
-          The service is provided on an "as is" and "as available" basis. We make no warranties, 
+          The service is provided on an "as is" and "as available" basis. We make no warranties,
           expressed or implied, regarding:
         </p>
         <ul>
@@ -112,28 +110,28 @@ export default function TermsOfService({ onBack }: TermsOfServiceProps): JSX.Ele
       <section className="legal-section">
         <h2>Changes to Service</h2>
         <p>
-          We reserve the right to modify, suspend, or discontinue any part of the service at 
-          any time without notice. As this is a client-side application, you can continue using 
-          any previously loaded version.
+          We reserve the right to modify, suspend, or discontinue any part of the service at any
+          time without notice. As this is a client-side application, you can continue using any
+          previously loaded version.
         </p>
       </section>
 
       <section className="legal-section">
         <h2>Changes to Terms</h2>
         <p>
-          We may update these Terms of Service from time to time. Changes will be reflected 
-          by an updated "Last updated" date. Continued use of the service after changes 
-          constitutes acceptance of the new terms.
+          We may update these Terms of Service from time to time. Changes will be reflected by an
+          updated "Last updated" date. Continued use of the service after changes constitutes
+          acceptance of the new terms.
         </p>
       </section>
 
       <section className="legal-section">
         <h2>Contact</h2>
         <p>
-          If you have questions about these Terms of Service, please use the contact form in 
-          the "About This Tool" section of the main application.
+          If you have questions about these Terms of Service, please use the contact form in the
+          "About This Tool" section of the main application.
         </p>
       </section>
     </div>
-  )
+  );
 }

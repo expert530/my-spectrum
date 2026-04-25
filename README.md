@@ -36,25 +36,25 @@ Explaining neurodiversity needs to teachers, therapists, and family members can 
 
 ### Core Functionality
 
-| Feature | Description |
-|---------|-------------|
+| Feature                        | Description                                                                                                                                   |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Interactive Metric Sliders** | Adjust six dimensions (Focus, Social Interaction, Sensory Sensitivity, Motor Skills, Routine Preference, Emotional Regulation) on a 0–5 scale |
-| **Support Recommendations** | Evidence-based strategies for parents and teachers based on your profile |
-| **QR Code Sharing** | Generate shareable QR codes/URLs to share settings instantly |
-| **Viewing Mode** | Clean, read-only view for teachers, caregivers, and others viewing shared profiles |
-| **CSV Export** | Download a comprehensive report for healthcare providers or schools |
-| **Plaintext Copy** | Copy your profile as text for emails or documents |
-| **Offline-First PWA** | Works fully offline, installable on any device |
-| **Privacy & Terms Pages** | Built-in Privacy Policy and Terms of Service |
-| **Accessibility** | Skip-to-content link, ARIA landmarks, keyboard navigation |
+| **Support Recommendations**    | Evidence-based strategies for parents and teachers based on your profile                                                                      |
+| **QR Code Sharing**            | Generate shareable QR codes/URLs to share settings instantly                                                                                  |
+| **Viewing Mode**               | Clean, read-only view for teachers, caregivers, and others viewing shared profiles                                                            |
+| **CSV Export**                 | Download a comprehensive report for healthcare providers or schools                                                                           |
+| **Plaintext Copy**             | Copy your profile as text for emails or documents                                                                                             |
+| **Offline-First PWA**          | Works fully offline, installable on any device                                                                                                |
+| **Privacy & Terms Pages**      | Built-in Privacy Policy and Terms of Service                                                                                                  |
+| **Accessibility**              | Skip-to-content link, ARIA landmarks, keyboard navigation                                                                                     |
 
 ### Support Levels (0–5 Scale)
 
-| Score | Level | Description |
-|-------|-------|-------------|
-| 0–1 | High Support | Needs significant assistance |
-| 2–3 | Moderate | Benefits from some support |
-| 4–5 | Independent | Manages well independently |
+| Score | Level        | Description                  |
+| ----- | ------------ | ---------------------------- |
+| 0–1   | High Support | Needs significant assistance |
+| 2–3   | Moderate     | Benefits from some support   |
+| 4–5   | Independent  | Manages well independently   |
 
 ### Two Modes
 
@@ -79,17 +79,20 @@ Visit the live app at: [Your deployed URL here]
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/expert530/my-spectrum.git
    cd my-spectrum
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Run the development server:**
+
    ```bash
    npm run dev
    ```
@@ -99,17 +102,17 @@ Visit the live app at: [Your deployed URL here]
 
 ### Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build locally |
-| `npm run test` | Run tests in watch mode |
-| `npm run test:run` | Run tests once |
-| `npm run test:coverage` | Run tests with coverage report |
-| `npm run type-check` | TypeScript type checking without emit |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Run ESLint with auto-fix |
+| Script                  | Description                              |
+| ----------------------- | ---------------------------------------- |
+| `npm run dev`           | Start development server with hot reload |
+| `npm run build`         | Build for production                     |
+| `npm run preview`       | Preview production build locally         |
+| `npm run test`          | Run tests in watch mode                  |
+| `npm run test:run`      | Run tests once                           |
+| `npm run test:coverage` | Run tests with coverage report           |
+| `npm run type-check`    | TypeScript type checking without emit    |
+| `npm run lint`          | Run ESLint                               |
+| `npm run lint:fix`      | Run ESLint with auto-fix                 |
 
 ---
 
@@ -223,6 +226,7 @@ User Input → MetricSlider → App State → URL/QR Generation
 ### Shared Utilities (`src/lib/metrics.ts`)
 
 Centralized functions to avoid duplication:
+
 - `getMetricEmoji()` - Emoji for each metric
 - `getSupportInfo()` - Support level with colors
 - `getIntensityLabel()` - Low/Medium/High labels
@@ -255,18 +259,19 @@ npm run test:coverage
 
 ### Test Structure
 
-| File | Coverage |
-|------|----------|
-| `MetricSlider.test.tsx` | Component rendering, user interactions, keyboard navigation |
-| `ShareModal.test.ts` | URL generation, QR code rendering |
-| `SupportStrategiesSection.test.tsx` | Strategy display, metric correlation |
-| `sharing.test.ts` | CSV generation, URL parsing, plaintext output |
-| `resources.test.ts` | Resource data validation |
-| `index.test.ts` | Type definitions and type guards |
+| File                                | Coverage                                                    |
+| ----------------------------------- | ----------------------------------------------------------- |
+| `MetricSlider.test.tsx`             | Component rendering, user interactions, keyboard navigation |
+| `ShareModal.test.ts`                | URL generation, QR code rendering                           |
+| `SupportStrategiesSection.test.tsx` | Strategy display, metric correlation                        |
+| `sharing.test.ts`                   | CSV generation, URL parsing, plaintext output               |
+| `resources.test.ts`                 | Resource data validation                                    |
+| `index.test.ts`                     | Type definitions and type guards                            |
 
 ### Integration Tests
 
 Located in `src/test/integration/`, these tests verify:
+
 - Full user flows (editing → sharing → viewing)
 - URL parameter handling
 - Mode switching behavior
@@ -280,6 +285,7 @@ npm run build
 ```
 
 Output is generated in `dist/`:
+
 - Minified and optimized JS/CSS bundles
 - Asset hashing for cache busting
 - PWA manifest and service worker
@@ -293,6 +299,7 @@ npm run preview
 ### Deployment
 
 The `dist/` folder can be deployed to any static hosting service:
+
 - Vercel
 - Netlify
 - GitHub Pages
@@ -310,6 +317,7 @@ None required - the app is fully client-side.
 ### TypeScript Configuration
 
 Path aliases are configured in `tsconfig.json`:
+
 ```json
 {
   "compilerOptions": {
@@ -323,6 +331,7 @@ Path aliases are configured in `tsconfig.json`:
 ### Vite Configuration
 
 See `vite.config.ts` for:
+
 - React plugin setup
 - Path alias resolution
 - Build optimization settings
@@ -330,6 +339,7 @@ See `vite.config.ts` for:
 ### Vitest Configuration
 
 See `vitest.config.ts` for:
+
 - jsdom environment
 - Test file patterns
 - Coverage configuration
@@ -373,6 +383,7 @@ Contributions are welcome! Please follow these guidelines:
 ### Commit Messages
 
 Follow conventional commits:
+
 - `feat:` New features
 - `fix:` Bug fixes
 - `docs:` Documentation changes
@@ -387,6 +398,7 @@ Follow conventional commits:
 This project is licensed under **CC BY-NC-SA 4.0** (Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International).
 
 You are free to share and adapt this work, but:
+
 - **Attribution** — You must give appropriate credit
 - **NonCommercial** — You may not use it for commercial purposes
 - **ShareAlike** — Derivatives must use the same license

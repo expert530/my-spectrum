@@ -1,7 +1,7 @@
 /**
  * @file components/ResourcesSection.tsx
  * @description Static section displaying curated neurodiversity resources
- * 
+ *
  * Features:
  * - Always visible at bottom of page
  * - Links to trusted external resources
@@ -9,26 +9,26 @@
  * - Tab-style layout with content below headers
  */
 
-import { useState } from 'react'
-import { parentResources, teacherResources } from '@/data/resources'
+import { useState } from 'react';
+import { parentResources, teacherResources } from '@/data/resources';
 
-type ResourceTab = 'parent' | 'teacher' | null
+type ResourceTab = 'parent' | 'teacher' | null;
 
 /**
  * ResourcesSection Component
- * 
+ *
  * Static section with curated links to evidence-based resources
  * with tab-style navigation for Parents and Educators
  */
 export default function ResourcesSection(): JSX.Element {
-  const [activeTab, setActiveTab] = useState<ResourceTab>(null)
+  const [activeTab, setActiveTab] = useState<ResourceTab>(null);
 
   const handleTabClick = (tab: ResourceTab) => {
-    setActiveTab(activeTab === tab ? null : tab)
-  }
+    setActiveTab(activeTab === tab ? null : tab);
+  };
 
-  const activeResources = activeTab === 'parent' ? parentResources : 
-                          activeTab === 'teacher' ? teacherResources : []
+  const activeResources =
+    activeTab === 'parent' ? parentResources : activeTab === 'teacher' ? teacherResources : [];
 
   return (
     <section id="resources" className="resources-section" aria-label="Learn More">
@@ -45,7 +45,9 @@ export default function ResourcesSection(): JSX.Element {
           aria-expanded={activeTab === 'parent'}
         >
           <span className="resources-tab__title">👨‍👩‍👧 For Parents & Caregivers</span>
-          <span className={`resources-tab__chevron ${activeTab === 'parent' ? 'resources-tab__chevron--expanded' : ''}`}>
+          <span
+            className={`resources-tab__chevron ${activeTab === 'parent' ? 'resources-tab__chevron--expanded' : ''}`}
+          >
             ▼
           </span>
         </button>
@@ -55,7 +57,9 @@ export default function ResourcesSection(): JSX.Element {
           aria-expanded={activeTab === 'teacher'}
         >
           <span className="resources-tab__title">👩‍🏫 For Educators</span>
-          <span className={`resources-tab__chevron ${activeTab === 'teacher' ? 'resources-tab__chevron--expanded' : ''}`}>
+          <span
+            className={`resources-tab__chevron ${activeTab === 'teacher' ? 'resources-tab__chevron--expanded' : ''}`}
+          >
             ▼
           </span>
         </button>
@@ -67,7 +71,7 @@ export default function ResourcesSection(): JSX.Element {
           <ul className="resources-list resources-list--grid">
             {activeResources.map((resource, idx) => (
               <li key={idx} className="resource-card">
-                <a 
+                <a
                   href={resource.url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -82,5 +86,5 @@ export default function ResourcesSection(): JSX.Element {
         </div>
       )}
     </section>
-  )
+  );
 }

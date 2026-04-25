@@ -22,7 +22,7 @@ export type SupportLevel = 'highNeed' | 'moderate' | 'independent';
 /**
  * Metric names for neurodiversity settings
  */
-export type MetricName = 
+export type MetricName =
   | 'Focus'
   | 'Social Interaction'
   | 'Sensory Sensitivity'

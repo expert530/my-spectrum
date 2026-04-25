@@ -1,6 +1,6 @@
-import { createRoot } from 'react-dom/client'
-import App from './App'
-import './styles.css'
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import './styles.css';
 
 /**
  * Initialize the application
@@ -14,32 +14,32 @@ async function init(): Promise<void> {
       // During development, avoid registering the service worker to prevent stale cached bundles
       if (import.meta.env.DEV) {
         // Unregister any existing registrations from earlier runs
-        const registrations = await navigator.serviceWorker.getRegistrations()
+        const registrations = await navigator.serviceWorker.getRegistrations();
         for (const registration of registrations) {
-          console.log('Unregistering service worker (DEV):', registration)
-          await registration.unregister()
+          console.log('Unregistering service worker (DEV):', registration);
+          await registration.unregister();
         }
       } else {
         // In production, register the service worker for offline support
-        await navigator.serviceWorker.register('/service-worker.js')
-        console.log('Service worker registered (PROD)')
+        await navigator.serviceWorker.register('/service-worker.js');
+        console.log('Service worker registered (PROD)');
       }
     } catch (error) {
-      console.warn('Service worker registration/unregistration failed:', error)
+      console.warn('Service worker registration/unregistration failed:', error);
     }
   }
 
   // Mount React application to DOM
-  const rootElement = document.getElementById('root')
+  const rootElement = document.getElementById('root');
   if (!rootElement) {
-    throw new Error('Root element not found in HTML')
+    throw new Error('Root element not found in HTML');
   }
 
-  const root = createRoot(rootElement)
-  root.render(<App />)
+  const root = createRoot(rootElement);
+  root.render(<App />);
 }
 
 // Execute initialization
 init().catch((error) => {
-  console.error('Application initialization failed:', error)
-})
+  console.error('Application initialization failed:', error);
+});
