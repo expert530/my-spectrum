@@ -73,7 +73,7 @@ Visit the live app at: [Your deployed URL here]
 
 ### Prerequisites
 
-- **Node.js** 18+ (LTS recommended)
+- **Node.js** 22.12+ (LTS recommended)
 - **npm** 9+
 
 ### Installation
