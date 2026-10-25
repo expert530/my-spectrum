@@ -6,3 +6,6 @@ dist
 # Playwright
 playwright-report/
 test-results/
+
+# Generated test coverage (uploaded as a CI artifact)
+coverage/

@@ -78,8 +78,7 @@ function getInitialMetrics(): MetricsObject {
 /**
  * Root App Component
  *
- * Manages global app state and initializes background services
- * Coordinates between UI components and data storage
+ * Manages global app state and switches between edit, share, viewing and legal views
  *
  * @returns Rendered application UI
  */
@@ -126,10 +125,7 @@ export default function App(): ReactElement {
   }, [metrics, shareName]);
 
   /**
-   * Initialize app services on mount
-   * - IndexedDB setup
-   * - Encryption initialization
-   * - Parse URL query parameters for shared settings
+   * Initialize on mount: load shared settings from URL query parameters, if present
    */
   useEffect(() => {
     async function initializeApp(): Promise<void> {
@@ -160,25 +156,6 @@ export default function App(): ReactElement {
     }
 
     initializeApp();
-
-    // Listen for online/offline events for future sync implementation
-    const handleOnline = () => {
-      console.log('App is online - ready for sync');
-      // TODO: Trigger background sync to Supabase
-    };
-
-    const handleOffline = () => {
-      console.log('App is offline - using local data');
-    };
-
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-
-    // Cleanup listeners
-    return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
   }, []);
 
   /**
@@ -215,8 +192,6 @@ export default function App(): ReactElement {
 
   /**
    * Handle metric value change
-   * - Updates controlled state
-   * - Saves encrypted log entry
    *
    * @param metricName - Name of the metric being changed
    * @param newScore - New score value (0-5)
@@ -386,9 +361,10 @@ export default function App(): ReactElement {
               <div className="grid">
                 {Object.keys(settingsData).map((metricName) => {
                   // Use index access to avoid TypeScript key matching issues
-                  const metricValues = (settingsData as Record<string, unknown[]>)[
-                    metricName
-                  ] as { score: number; description: string }[];
+                  const metricValues = (settingsData as Record<string, unknown[]>)[metricName] as {
+                    score: number;
+                    description: string;
+                  }[];
                   return (
                     <MetricSlider
                       key={metricName}

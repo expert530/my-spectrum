@@ -10,7 +10,6 @@
 
 - [Why This Exists](#why-this-exists)
 - [Features](#features)
-- [Live Demo](#live-demo)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
@@ -44,8 +43,9 @@ Explaining neurodiversity needs to teachers, therapists, and family members can 
 | **Viewing Mode**               | Clean, read-only view for teachers, caregivers, and others viewing shared profiles                                                            |
 | **CSV Export**                 | Download a comprehensive report for healthcare providers or schools                                                                           |
 | **Plaintext Copy**             | Copy your profile as text for emails or documents                                                                                             |
-| **Offline-First PWA**          | Works fully offline, installable on any device                                                                                                |
+| **Offline-First PWA**          | Installable; works offline after the first visit (production builds)                                                                          |
 | **Privacy & Terms Pages**      | Built-in Privacy Policy and Terms of Service                                                                                                  |
+| **Contact Form**               | Optional feedback form; sent via Web3Forms only when you submit it                                                                            |
 | **Accessibility**              | Skip-to-content link, ARIA landmarks, keyboard navigation                                                                                     |
 
 ### Support Levels (0–5 Scale)
@@ -60,12 +60,6 @@ Explaining neurodiversity needs to teachers, therapists, and family members can 
 
 1. **Editing Mode** - Interactive sliders for creating and adjusting your profile
 2. **Viewing Mode** - Read-only presentation when loading a shared profile URL
-
----
-
-## Live Demo
-
-Visit the live app at: [Your deployed URL here]
 
 ---
 
@@ -110,9 +104,14 @@ Visit the live app at: [Your deployed URL here]
 | `npm run test`          | Run tests in watch mode                  |
 | `npm run test:run`      | Run tests once                           |
 | `npm run test:coverage` | Run tests with coverage report           |
+| `npm run test:e2e`      | Run Playwright E2E tests (Firefox)       |
 | `npm run type-check`    | TypeScript type checking without emit    |
 | `npm run lint`          | Run ESLint                               |
 | `npm run lint:fix`      | Run ESLint with auto-fix                 |
+| `npm run format:check`  | Check formatting with Prettier           |
+| `npm run format`        | Format all files with Prettier           |
+
+See [LINTING_SETUP.md](LINTING_SETUP.md) for lint, format and TypeScript rules.
 
 ---
 
@@ -146,48 +145,36 @@ The "What Helps" section displays evidence-based recommendations that update dyn
 ## Project Structure
 
 ```
-my-spectrum-settings/
-├── .github/
-│   └── workflows/
-│       └── ci.yml              # GitHub Actions CI pipeline
+my-spectrum/
+├── .github/workflows/ci.yml    # CI: type-check, lint, format, tests, build
+├── .agents/skills/             # Task guides for AI coding agents (see AGENTS.md)
+├── e2e/app.spec.ts             # Playwright E2E tests
+├── public/                     # Copied as-is to the site root on build
+│   ├── service-worker.js       # Offline caching (production only)
+│   ├── manifest.json           # PWA manifest
+│   └── icons/                  # PWA icons (192 and 512 px)
 ├── src/
-│   ├── main.tsx                # Application entry point
-│   ├── App.tsx                 # Root component with routing logic
+│   ├── main.tsx                # Entry point; registers the service worker in production
+│   ├── App.tsx                 # Root component: state, URL loading, edit/share/legal views
 │   ├── styles.css              # Global styles and CSS variables
-│   ├── vite-env.d.ts           # Vite type declarations
-│   ├── components/
-│   │   ├── CollapsibleSection.tsx  # Collapsible content wrapper
-│   │   ├── MetricSlider.tsx    # Interactive slider component
-│   │   ├── ProfileCard.tsx     # Read-only metric card (viewing mode)
-│   │   ├── PrivacyPolicy.tsx   # Privacy Policy page
-│   │   ├── ResourcesSection.tsx
-│   │   ├── SectionNav.tsx      # Sticky navigation
-│   │   ├── ShareModal.tsx      # QR code generation modal
-│   │   ├── SupportStrategiesSection.tsx
-│   │   ├── TermsOfService.tsx  # Terms of Service page
-│   │   └── ViewingMode.tsx     # Read-only profile view
+│   ├── components/             # UI components (sliders, viewing mode, legal pages, …)
 │   ├── data/
-│   │   ├── resources.ts        # Curated resource links
-│   │   └── resources.test.ts
+│   │   ├── allSettingValues.json  # 0–5 score descriptions for each metric
+│   │   └── resources.ts        # Curated resource links
 │   ├── lib/
-│   │   ├── metrics.ts          # Shared metric utilities
-│   │   ├── recommendations.ts  # Strategy generation engine
-│   │   ├── sharing.ts          # CSV, plaintext, URL utilities
-│   │   └── sharing.test.ts
-│   ├── test/
-│   │   ├── setup.ts            # Test environment setup
-│   │   └── integration/        # Integration test suites
-│   └── types/
-│       ├── index.ts            # TypeScript type definitions
-│       └── index.test.ts
-├── allSettingValues.json       # Metric definitions (0–5 scale descriptions)
+│   │   ├── metrics.ts          # Shared metric utilities and constants
+│   │   ├── recommendations.ts  # Strategy table and recommendation engine
+│   │   └── sharing.ts          # CSV, plaintext and URL parsing
+│   ├── types/index.ts          # Shared TypeScript types
+│   ├── __tests__/              # Unit tests (mirrors components/, data/, lib/, types/)
+│   └── test/
+│       ├── setup.ts            # Vitest setup (jest-dom, browser API mocks)
+│       └── integration/        # Full-app flow tests
 ├── index.html                  # HTML entry point
-├── manifest.json               # PWA manifest
-├── service-worker.js           # Offline caching
-├── package.json
-├── tsconfig.json               # TypeScript configuration
-├── vite.config.ts              # Vite bundler configuration
-└── vitest.config.ts            # Test runner configuration
+├── AGENTS.md                   # Guidance for AI coding agents
+├── LINTING_SETUP.md            # Lint, format and TypeScript rules
+├── eslint.config.mjs, .prettierrc.json, tsconfig.json
+└── vite.config.ts, vitest.config.ts, playwright.config.ts
 ```
 
 ---
@@ -199,19 +186,21 @@ my-spectrum-settings/
 1. **Single Page Application** - React with Vite for fast development and optimized builds
 2. **Zero Backend** - All data processing happens client-side; privacy by design
 3. **URL-based Sharing** - Metrics encoded in query parameters for stateless sharing
-4. **Offline-First PWA** - Service Worker caches assets for offline use
+4. **Offline-First PWA** - A service worker caches the app shell and assets for offline use
 
 ### Component Architecture
 
 ```
 App.tsx
-├── SectionNav          # Sticky navigation
-├── MetricSlider[]      # One per metric (editing mode)
-├── ShareModal          # QR code generation
+├── SectionNav                # Sticky navigation
+├── MetricSlider[]            # One per metric (edit view)
+├── Share view                # QR code, link, CSV and plaintext (rendered inline)
 ├── SupportStrategiesSection
 ├── ResourcesSection
-└── ViewingMode         # Displayed when loading shared URL
-    ├── ProfileCard[]   # Read-only metric cards
+├── CollapsibleSection[]      # Wraps strategies, resources and About/contact
+├── PrivacyPolicy / TermsOfService
+└── ViewingMode               # Displayed when loading a shared URL
+    ├── ProfileCard[]         # Read-only metric cards
     └── Embedded strategies/resources
 ```
 
@@ -223,15 +212,22 @@ User Input → MetricSlider → App State → URL/QR Generation
                                      → CSV/Plaintext Export
 ```
 
+### Share URL Format
+
+Shared links use short query keys: `f` (Focus), `si` (Social Interaction), `ss` (Sensory
+Sensitivity), `ms` (Motor Skills), `rp` (Routine Preference), `er` (Emotional Regulation), each
+0–5, plus an optional `name`. Existing QR codes depend on these keys, so they must not change.
+URLs are built by `generateShareUrl` in `src/components/ShareModal.tsx` and parsed in
+`src/App.tsx` and `src/lib/sharing.ts`.
+
 ### Shared Utilities (`src/lib/metrics.ts`)
 
 Centralized functions to avoid duplication:
 
-- `getMetricEmoji()` - Emoji for each metric
-- `getSupportInfo()` - Support level with colors
-- `getIntensityLabel()` - Low/Medium/High labels
-- `getScoreColor()` - Visual color coding
-- `isValidMetricScore()` - Type guard for validation
+- `getMetricEmoji()`, `getMetricColorClass()` - Per-metric emoji and CSS class
+- `getSupportLevel()`, `getSupportLevelLabel()`, `getSupportInfo()` - Support level, label and colors
+- `getIntensityLabel()`, `getScoreColor()` - Low/Medium/High labels and color coding
+- `isValidMetricScore()`, `isValidMetricName()` - Type guards for validation
 - Constants: `METRIC_NAMES`, `MAX_METRIC_SCORE`, `DEFAULT_METRIC_SCORE`
 
 ---
@@ -259,14 +255,14 @@ npm run test:coverage
 
 ### Test Structure
 
-| File                                | Coverage                                                    |
-| ----------------------------------- | ----------------------------------------------------------- |
-| `MetricSlider.test.tsx`             | Component rendering, user interactions, keyboard navigation |
-| `ShareModal.test.ts`                | URL generation, QR code rendering                           |
-| `SupportStrategiesSection.test.tsx` | Strategy display, metric correlation                        |
-| `sharing.test.ts`                   | CSV generation, URL parsing, plaintext output               |
-| `resources.test.ts`                 | Resource data validation                                    |
-| `index.test.ts`                     | Type definitions and type guards                            |
+Unit tests live in `src/__tests__/`, mirroring the source folders:
+
+| Area          | Files                                                                                              |
+| ------------- | -------------------------------------------------------------------------------------------------- |
+| `lib/`        | `metrics`, `recommendations`, `sharing` (CSV, plaintext, URL parsing)                              |
+| `components/` | `MetricSlider`, `ProfileCard`, `ShareModal` (share URL), `SupportStrategiesSection`, `ViewingMode` |
+| `data/`       | `resources` (resource data validation)                                                             |
+| `types/`      | Type definitions                                                                                   |
 
 ### Integration Tests
 
@@ -275,6 +271,19 @@ Located in `src/test/integration/`, these tests verify:
 - Full user flows (editing → sharing → viewing)
 - URL parameter handling
 - Mode switching behavior
+
+### End-to-End Tests
+
+`e2e/app.spec.ts` runs in Playwright (Firefox) against the dev server, which it starts
+automatically:
+
+```bash
+npx playwright install firefox   # first time only
+npm run test:e2e                 # or npm run test:e2e:headed
+```
+
+The contact-form tests only check the form fields; they never submit it, because submitting
+sends a real message.
 
 ---
 
@@ -288,7 +297,7 @@ Output is generated in `dist/`:
 
 - Minified and optimized JS/CSS bundles
 - Asset hashing for cache busting
-- PWA manifest and service worker
+- `public/` contents (service worker, PWA manifest, icons) copied unhashed to the root
 
 ### Preview Production Build
 
@@ -296,9 +305,13 @@ Output is generated in `dist/`:
 npm run preview
 ```
 
+The service worker only registers in production builds, so use `npm run preview` to test
+offline behaviour.
+
 ### Deployment
 
-The `dist/` folder can be deployed to any static hosting service:
+The `dist/` folder can be deployed to any static hosting service. It must be served from the
+domain root (Vite `base: '/'`) over HTTPS for the service worker to work:
 
 - Vercel
 - Netlify
@@ -334,7 +347,7 @@ See `vite.config.ts` for:
 
 - React plugin setup
 - Path alias resolution
-- Build optimization settings
+- Dev server port (5173)
 
 ### Vitest Configuration
 
@@ -348,12 +361,14 @@ See `vitest.config.ts` for:
 
 ## Privacy
 
-**Your privacy matters:** All data stays on your device. Nothing is sent to any server.
+**Your privacy matters:** Your profile stays on your device and is never sent to a server.
 
 - **No analytics** - Zero tracking scripts
 - **No accounts** - No user data stored anywhere
 - **No cookies** - No persistent identifiers
-- **URL-only sharing** - The QR code contains only metric scores (0-5 values)
+- **URL-only sharing** - Shared links and QR codes contain only the metric scores (0–5) and an optional name
+- **Offline cache** - The service worker caches app files only, never your profile
+- **Contact form** - Only what you type is sent to Web3Forms, and only when you submit it
 - **Open source** - Verify the code yourself
 
 ---
@@ -361,6 +376,8 @@ See `vitest.config.ts` for:
 ## Contributing
 
 Contributions are welcome! Please follow these guidelines:
+
+> **AI coding agents:** start with [AGENTS.md](AGENTS.md). Task-specific skills live in [`.agents/skills/`](.agents/skills/).
 
 ### Development Workflow
 
@@ -370,14 +387,15 @@ Contributions are welcome! Please follow these guidelines:
 4. Run tests: `npm run test:run`
 5. Run type check: `npm run type-check`
 6. Run lint: `npm run lint`
-7. Commit with descriptive message
-8. Push and open a Pull Request
+7. Check formatting: `npm run format:check`
+8. Commit with descriptive message
+9. Push and open a Pull Request
 
 ### Code Style
 
 - TypeScript strict mode enabled
 - ESLint with recommended rules
-- Prettier for formatting (optional)
+- Prettier for formatting (`npm run format:check`)
 - JSDoc comments for public APIs
 
 ### Commit Messages

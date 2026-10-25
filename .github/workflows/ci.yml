@@ -27,6 +27,12 @@ jobs:
       - name: TypeScript type check
         run: npm run type-check
 
+      - name: ESLint
+        run: npm run lint
+
+      - name: Prettier format check
+        run: npm run format:check
+
   test:
     name: Unit & Integration Tests
     runs-on: ubuntu-latest

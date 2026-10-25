@@ -94,13 +94,3 @@ export interface ResourcesByAudience {
   parent: Resource[];
   teacher: Resource[];
 }
-
-/**
- * Structure for storing metric history in IndexedDB
- */
-export interface MetricLog {
-  id?: number;
-  timestamp: number;
-  metrics: MetricsObject;
-  encrypted: boolean;
-}
